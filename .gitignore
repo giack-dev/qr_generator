@@ -1,3 +1,7 @@
-./flagged/
-./__pycache__/
-./generated_qr_codes/**
+flagged/
+__pycache__/
+generated_qr_codes/**
+
+.DS_Store
+.vscode
+.idea
