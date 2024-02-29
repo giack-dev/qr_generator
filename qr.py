@@ -1,7 +1,7 @@
 import qrcode
 
 def create_qr_code(input_data: str) -> bool:
-    file_name = "generated_qr.jpg"
+    filename = "generated_qr.jpg"
     qr = qrcode.QRCode(
         version=1,
         error_correction=qrcode.constants.ERROR_CORRECT_L,
@@ -14,9 +14,9 @@ def create_qr_code(input_data: str) -> bool:
     img = qr.make_image(fill_color="black", back_color="white")
     img = img.resize((256, 256))
     try:
-        img.save(file_name)
-        print(f"Saved image as: {file_name}")
+        img.save(filename)
+        print(f"Saved image as: {filename}")
         return True
     except:
-        print(f"There was an error creating image: {file_name}")
+        print(f"There was an error creating image: {filename}")
         return False
