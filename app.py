@@ -20,11 +20,12 @@ def generate_qr(url: str, file: str = './generated_qr_codes') -> Tuple[str, str]
 
 def main() -> None:
     input_url = gr.Textbox(label="URL", placeholder="Enter a Full URL(e.g. https://www.google.com/)", interactive=True, lines="1", max_lines="10", show_label=True)
-    output_text = gr.Textbox(label="Message", placeholder="", interactive=False, lines="1", max_lines="10", show_label=True)
-    generated_qr = gr.Image(type="filepath", height=256, width=256, show_download_button=True, show_share_button=True)
+    output_text = gr.Textbox(label="Message", placeholder="", interactive=False, lines="1", max_lines="1", show_label=True)
+    generated_qr = gr.Image(type="filepath", height=256, width=256, show_label=False, show_download_button=True, show_share_button=True)
 
     app = gr.Interface(
         title="QR Code Generator",
+        theme=gr.themes.Soft(),
         fn=generate_qr,
         inputs=input_url,
         outputs=[output_text, generated_qr],
