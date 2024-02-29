@@ -6,9 +6,6 @@ import qr
 def validate_input_url(url: str) -> bool:
    val.url(url)
 
-
-
-
 def main():
     inputURL: gr.Textbox = gr.Textbox(label="URL", value="Enter a URL(e.g. https://www.google.com/)", lines="1", max_lines="10", show_label=True)
     
