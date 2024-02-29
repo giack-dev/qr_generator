@@ -5,20 +5,18 @@ from typing import Tuple
 import os
 import qr
 
-
 def validate_input_url(url: str) -> bool:
     return val.url(url)
     
 def generate_qr(url: str, file: str = './generated_qr_codes') -> Tuple[str, str]:
     if validate_input_url(url):
-        random_image_number = random.randint(1, 10000)
-        filename = f"generated_qr_{random_image_number}.jpg"
-        filepath = os.path.join(file, filename)
+        random_image_number: int = random.randint(1, 10000)
+        filename: str = f"generated_qr_{random_image_number}.jpg"
+        filepath: str = os.path.join(file, filename)
         qr.create_qr_code(url, filepath)
         return "QR Code generated successfully.", filepath
     else:
         return "Invalid URL. Cannot generate QR Code.", ""
-
 
 def main() -> None:
     input_url = gr.Textbox(label="URL", placeholder="Enter a Full URL(e.g. https://www.google.com/)", interactive=True, lines="1", max_lines="10", show_label=True)
