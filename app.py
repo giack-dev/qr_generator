@@ -5,59 +5,63 @@ from typing import Tuple
 import os
 import qr
 
+
 def validate_input_url(url: str) -> bool:
     return val.url(url)
-    
-def generate_qr(url: str, file: str = './generated_qr_codes/') -> Tuple[str, str]:
+
+
+def generate_qr(url: str, file: str = "./generated_qr_codes/") -> Tuple[str, str]:
     if not os.path.exists(file):
         os.mkdir(file)
-    
+
     if validate_input_url(url):
         random_image_number: int = random.randint(1, 10000)
-        filename: str = f'generated_qr_{random_image_number}.jpg'
+        filename: str = f"generated_qr_{random_image_number}.jpg"
         filepath: str = os.path.join(file, filename)
         qr.create_qr_code(url, filepath)
-        return 'QR Code generated successfully.', filepath
+        return "QR Code generated successfully.", filepath
     else:
-        return 'Invalid URL. Cannot generate QR Code.', ''
+        return "Invalid URL. Cannot generate QR Code.", ""
+
 
 def main() -> None:
     input_url = gr.Textbox(
-        label='URL',
-        placeholder='Enter a Full URL(e.g. https://www.google.com/)',
+        label="URL",
+        placeholder="Enter a Full URL(e.g. https://www.google.com/)",
         interactive=True,
-        lines='1',
-        max_lines='10',
-        show_label=True
+        lines="1",
+        max_lines="10",
+        show_label=True,
     )
-    
+
     output_text = gr.Textbox(
-        label='Message',
-        placeholder='',
+        label="Message",
+        placeholder="",
         interactive=False,
-        lines='1',
-        max_lines='1',
-        show_label=True
+        lines="1",
+        max_lines="1",
+        show_label=True,
     )
-    
+
     generated_qr = gr.Image(
-        type='filepath',
+        type="filepath",
         height=256,
         width=256,
         show_label=False,
         show_download_button=True,
-        show_share_button=True
+        show_share_button=True,
     )
 
     app = gr.Interface(
-        title='QR Code Generator',
+        title="QR Code Generator",
         theme=gr.themes.Soft(),
         fn=generate_qr,
         inputs=input_url,
         outputs=[output_text, generated_qr],
     )
-    
+
     app.launch()
 
-if __name__ == '__main__':
-   main()
+
+if __name__ == "__main__":
+    main()
