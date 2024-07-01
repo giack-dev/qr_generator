@@ -1,6 +1,7 @@
 flagged/
 __pycache__/
 generated_qr_codes/**
+venv/
 
 .DS_Store
 .vscode
